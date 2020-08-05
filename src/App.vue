@@ -1,32 +1,45 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="g-container">
+    <div class="g-view-container">
+      <router-view/>
     </div>
-    <router-view/>
+    <template v-if="$route.name !== 'product'">
+      <div class="g-footer-container">
+        <c-tabber />
+      </div>
+    </template>
   </div>
 </template>
 
+<script>
+  import CTabber from '@/components/tabbar/index'
+
+  export default {
+    name: 'App',
+    components: {
+      CTabber
+    }
+  }
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .g-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .g-view-container {
+    height: 100%;
+    padding-bottom: 100px;
+    overflow: hidden;
+  }
+  .g-footer-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
+  }
 </style>
